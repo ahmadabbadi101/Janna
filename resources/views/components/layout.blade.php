@@ -8,16 +8,16 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body class="bg-green-900 text-white min-h-screen">
-    <div class="p-10">
-        <nav class="flex items-center justify-between p-4 border-b border-green-100">
+    <div class="px-10">
+        <nav class="flex items-center justify-between border-b border-green-100">
             <div>
-                <a href="">
-                    <img src="{{ Vite::asset('resources/images/logo.webp') }}" alt="Janna" class="w-12 h-12 object-contain">
+                <a href="/">
+                    <x-logo class="w-20 h-20 object-contain"/>
                 </a>
             </div>
 
             <div>
-                <a href="" class="text-green-100 hover:text-white px-4">Login</a>
+                <a href="" class="text-green-100 hover:text-white px-4 font-bold">Login</a>
             </div>
         </nav>
 

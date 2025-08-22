@@ -1,0 +1,1 @@
+<div class="border border-white/10 rounded-lg text-center"> {{$slot}} </div>
