@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SessionController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [SessionController::class, "create"]);
+Route::post('/login', [SessionController::class, "store"]);
+Route::delete('/logout', [SessionController::class, "destroy"]);
 
 Route::get('/menu', function () {
     return view('menu');

@@ -17,7 +17,9 @@
             </div>
 
             <div>
-                <a href="" class="text-green-100 hover:text-white px-4 font-bold">Login</a>
+                
+                <a href="/login" class="text-green-100 hover:text-white px-4 font-bold">Login</a>
+                
             </div>
         </nav>
 
