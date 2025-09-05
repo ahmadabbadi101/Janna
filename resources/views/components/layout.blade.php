@@ -17,8 +17,17 @@
             </div>
 
             <div>
-                
+                @guest
                 <a href="/login" class="text-green-100 hover:text-white px-4 font-bold">Login</a>
+                @endguest
+
+                @auth
+                <form action="/logout" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="text-green-100 hover:text-white px-4 font-bold">Logout</button>
+                </form>
+                @endauth
                 
             </div>
         </nav>
