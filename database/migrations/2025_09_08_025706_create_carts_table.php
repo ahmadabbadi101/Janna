@@ -3,10 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Table;
-use App\Models\Dish;
-use App\Models\Employee;
-use App\Models\Cart;
+
 return new class extends Migration
 {
     /**
@@ -14,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password');
-            $table->foreignIdFor(Employee::class);
-            $table->foreignIdFor(Cart::class);
             $table->timestamps();
         });
-
-        
     }
 
     /**
@@ -31,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('carts');
     }
 };

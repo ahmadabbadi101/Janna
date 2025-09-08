@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cart;
 
 class Table extends User
 {
@@ -42,8 +43,8 @@ class Table extends User
         return $this->belongsTo(Employee::class);
     }
 
-    public function dishes()
+    public function carts()
     {
-        return $this->belongsToMany(Dish::class, 'tables_dishes');
+        return $this->hasOne(Cart::class);
     }
 }

@@ -16,7 +16,7 @@ class DishSeeder extends Seeder
             "name" => "tabouleh",
             "price" => "6$",
             "description" => "Finely-chopped parsley, tomato and burgul are dressed with lemon and olive oil.",
-            "category" => "appetizer",
+            "category" => "Appetizer",
         ]);
         Dish::create([
             "name" => "Chicken Shawerma Fatteh",

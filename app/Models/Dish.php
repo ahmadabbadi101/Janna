@@ -8,16 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
 
+    protected $table = 'dishes';
     use HasFactory;
 
-    protected $table = 'dishes';
-
     protected $fillable = [
-        
-    ];
-
-    public function tables()
-    {
-        return $this->belongsToMany(Table::class, 'tables_dishes');
-    }
+        'name',
+        'price',
+        'description',
+        'category',
+    ]; 
 }
