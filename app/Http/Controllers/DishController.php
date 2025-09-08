@@ -19,11 +19,18 @@ class DishController extends Controller
     }
     public function create()
     {
-        
+        return view('dishes.create');
     }
     public function store() 
     {
-        
+        request()->validate([
+            'name' => ['required', 'string', 'min:1', 'max:20'],
+            'price' => ['required', 'string', 'min:1', 'max:8'],
+            'description' => ['required', 'string', 'min:1', 'max:200'],
+            'category' => ['required']
+        ]);
+        Dish::create(request()->all());
+        return redirect('/admin/dishes');
     }
     public function destroy(Dish $dish) 
     {

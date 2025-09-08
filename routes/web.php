@@ -14,4 +14,6 @@ Route::post('/login', [SessionController::class, "store"]);
 Route::delete('/logout', [SessionController::class, "destroy"]);
 
 Route::get('/admin/dishes', [DishController::class, "index"]);
+Route::get('/admin/dishes/create', [DishController::class, "create"]);
+Route::post('/admin/dishes', [DishController::class, "store"]);
 Route::delete('/admin/dishes/{dish}', [DishController::class, "destroy"]);
