@@ -14,20 +14,18 @@
                 <form action="/admin/dishes/{{$dish->id}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit"
-                        class="bg-white/10 text-white text-sm p-1 rounded-md hover:bg-white/20 transition-colors">
+                    <x-button type="submit">
                         Delete
-                    </button>
+                    </x-button>
                 </form>
                 @else
                 <form action="" method="post">
                 @csrf
                 <input type="number" name="quantity" min="1" value="1"
                     class="w-16 bg-white/10 text-white text-sm p-1 rounded-md border border-white/20 focus:border-white/40 focus:outline-none">
-                <button type="submit"
-                    class="bg-white/10 text-white text-sm p-1 rounded-md hover:bg-white/20 transition-colors">
+                <x-button type="submit">
                     Add to Cart
-                </button>
+                </x-button>
                 </form>
                 @endif
             </div>

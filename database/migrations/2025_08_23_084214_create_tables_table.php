@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Table;
 use App\Models\Dish;
 use App\Models\Employee;
-use App\Models\Cart;
+use App\Models\Order;
 return new class extends Migration
 {
     /**
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->foreignIdFor(Employee::class);
-            $table->foreignIdFor(Cart::class);
+            $table->foreignIdFor(Order::class);
             $table->timestamps();
         });
 

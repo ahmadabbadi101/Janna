@@ -1,4 +1,5 @@
 <x-layout>
+    <x-back-button href="/admin/dishes" />
     <x-page-heading>
         Create Dish
     </x-page-heading>
