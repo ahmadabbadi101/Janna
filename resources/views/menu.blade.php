@@ -10,16 +10,9 @@
                     Appetizers
                 </x-section-heading>
                 
-                <x-menu-item name="Chicken Wings" price="12">
-                    Chicken wings marinated in our signature sauce and served with a side of celery and blue cheese dressing.
-                </x-menu-item>
-
-                <x-menu-item name="Chicken Wings" price="12">
-                    Chicken wings marinated in our signature sauce and served with a side of celery and blue cheese dressing.
-                </x-menu-item>
-                <x-menu-item name="Chicken Wings" price="12">
-                    Chicken wings marinated in our signature sauce and served with a side of celery and blue cheese dressing.
-                </x-menu-item>
+                @foreach ($appetizers as $appetizer)
+                    <x-menu-item :dish="$appetizer" />
+                @endforeach
 
             </x-menu-section>
 
@@ -27,27 +20,30 @@
                 <x-section-heading>
                     Platters
                 </x-section-heading>
-                <x-menu-item name="Chicken Wings" price="12">
-                    Chicken wings marinated in our signature sauce and served with a side of celery and blue cheese dressing.
-                </x-menu-item>
+                
+                @foreach ($platters as $platter)
+                    <x-menu-item :dish="$platter" />
+                @endforeach
             </x-menu-section>
 
             <x-menu-section>
                 <x-section-heading>
                     Sandwiches
                 </x-section-heading>
-                <x-menu-item name="Chicken Wings" price="12">
-                    Chicken wings marinated in our signature sauce and served with a side of celery and blue cheese dressing.
-                </x-menu-item>
+                
+                @foreach ($sandwiches as $sandwich)
+                    <x-menu-item :dish="$sandwich" />
+                @endforeach
             </x-menu-section>
 
             <x-menu-section>
                 <x-section-heading>
                     Drinks
                 </x-section-heading>
-                <x-menu-item name="Chicken Wings" price="12">
-                    Chicken wings marinated in our signature sauce and served with a side of celery and blue cheese dressing.
-                </x-menu-item>
+                
+                @foreach ($drinks as $drink)
+                    <x-menu-item :dish="$drink" />
+                @endforeach
             </x-menu-section>
         </div>
         <a href="#">
