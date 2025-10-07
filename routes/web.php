@@ -7,9 +7,13 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TableController;
 
 Route::view('/', 'welcome');
-Route::view('/menu', 'menu');
 Route::view('/admin', 'admin');
-Route::view('/cart', 'cart');
+
+Route::get('/menu', [DishController::class, 'menu']);
+Route::post('/menu/{dish}', [DishController::class, 'addToCart']);
+Route::get('/cart', [DishController::class, 'Cart']);
+Route::delete('/cart/{dish}', [DishController::class, 'removeFromCart']);
+Route::post('/cart', [DishController::class, 'confirmCart']);
 
 Route::get('/login', [SessionController::class, "create"]);
 Route::post('/login', [SessionController::class, "store"]);

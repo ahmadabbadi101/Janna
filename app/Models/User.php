@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Dish;
 
 class User extends Authenticatable
 {
@@ -51,5 +52,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function dishes()
+    {
+        return $this->belongsToMany(Dish::class, 'tables_dishes', 'table_id', 'dish_id')
+            ->withPivot('quantity', 'confirmed')
+            ->withTimestamps();
     }
 }

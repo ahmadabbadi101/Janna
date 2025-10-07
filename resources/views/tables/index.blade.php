@@ -11,7 +11,7 @@
 
                 <div class="flex justify-between items-center mt-1">
                     <div>
-                        <x-button class="text-xl" href="/admin/tables/{{ $table->id }}/edit" type="submit">Edit</x-button>
+                        <x-button class="text-xl" href="/admin/tables/{{ $table->id }}/edit">Edit</x-button>
                     </div>
                     <div>
                         
@@ -28,6 +28,6 @@
     </div>
 
     <div class="mt-15 text-center mx-auto max-w-7xl mb-10">
-        <x-button class="!text-2xl font-bold !bg-blue-800 !hover:bg-blue-600" href="/admin/tables/create" type="submit">Create Table</x-button>
+        <x-button class="!text-2xl font-bold !bg-blue-800 !hover:bg-blue-600" href="/admin/tables/create">Create Table</x-button>
     </div>
 </x-layout>

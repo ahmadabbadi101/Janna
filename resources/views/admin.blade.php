@@ -3,6 +3,7 @@
         Admin Dashboard
     </x-page-heading>
     
+    
     <div class="flex gap-6 mt-8">
         <div class="flex-1">
             <x-admin-card 

@@ -4,6 +4,7 @@
             Menu
         </x-page-heading>
 
+
         <div class="grid lg:grid-cols-4 gap-8 mt-6 mx-auto max-w-7xl items-start">
             <x-menu-section>
                 <x-section-heading>
@@ -46,7 +47,7 @@
                 @endforeach
             </x-menu-section>
         </div>
-        <a href="#">
+        <a href="/cart">
             <img src="{{ Vite::asset('resources/images/cart-icon.png') }}" alt="cart" class="fixed bottom-6 right-6 w-28 h-15 cursor-pointer hover:scale-110 transition-transform">
         </a>
     </div>

@@ -7,6 +7,7 @@
     <title>Janna</title>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
+        
 <body class="bg-green-900 text-white min-h-screen">
     <div class="px-10">
         <nav class="flex items-center justify-between border-b border-green-100">
@@ -33,6 +34,7 @@
         </nav>
 
         <main class="pt-20">
+            <x-flash-message />
             {{ $slot }}
         </main>
     </div>

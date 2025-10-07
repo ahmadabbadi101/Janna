@@ -32,19 +32,19 @@ class Table extends User
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
+    protected $casts = [
             'password' => 'hashed',
         ];
-    }
+    
     public function employee()
     {
         return $this->belongsTo(Employee::class);
     }
 
-    public function orders()
+    public function dishes()
     {
-        return $this->hasOne(Order::class);
+        return $this->belongsToMany(Dish::class, 'tables_dishes', 'table_id', 'dish_id')
+            ->withPivot('quantity', 'confirmed')
+            ->withTimestamps();
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\Employee;
 use App\Models\Table;
+use Illuminate\Support\Facades\Hash;
 
 class SessionController extends Controller
 {
@@ -26,28 +27,23 @@ class SessionController extends Controller
         {
             $employee = Employee::where('username', strtolower($attributes['username']))->first();
 
-            if(!$employee || !password_verify($attributes['password'], $employee->password))
+            if(!$employee || !Hash::check($attributes['password'], $employee->password))
             {
                 throw ValidationException::withMessages([
                     'username' => 'Sorry these credentials do not match'
                 ]);
             }
-            if($employee->id == 1)
-            {
-                Auth::login($employee);
-                request()->session()->regenerate();
-                return redirect('/admin');
-            }
             Auth::login($employee);
             request()->session()->regenerate();
-            return redirect('/waiter');
+
+            return $employee->id == 1 ? redirect('/admin') : redirect('/waiter');
         }
         
         else
         {
             $customer = Table::where('username', $attributes['username'])->first();
 
-            if(!$customer || !password_verify($attributes['password'], $customer->password))
+            if(!$customer || !Hash::check($attributes['password'], $customer->password))
             {
                 throw ValidationException::withMessages([
                     'username' => 'Sorry these credentials do not match'
@@ -61,6 +57,8 @@ class SessionController extends Controller
     public function destroy()
     {
         Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
         return redirect('/');
     }
 }

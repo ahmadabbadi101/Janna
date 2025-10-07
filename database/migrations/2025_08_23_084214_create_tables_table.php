@@ -19,11 +19,10 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->foreignIdFor(Employee::class);
-            $table->foreignIdFor(Order::class);
             $table->timestamps();
         });
 
-        
+
     }
 
     /**
@@ -32,5 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tables');
+        Schema::dropIfExists('tables_dishes');
     }
 };

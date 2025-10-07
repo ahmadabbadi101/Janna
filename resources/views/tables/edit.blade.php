@@ -7,7 +7,7 @@
         @csrf
         @method('PUT')
         <x-forms.input type="text" label="Username" name="username" value="{{ $table->username }}" />
-        <x-forms.input type="password" label="Password" name="password" m/>
+        <x-forms.input type="password" label="Password" name="password" />
         <x-forms.select label="Employee" name="employee_id">
             @foreach($employees as $employee)
                 @if($employee->id != 1)

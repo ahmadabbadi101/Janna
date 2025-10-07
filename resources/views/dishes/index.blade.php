@@ -45,7 +45,7 @@
         </div>
 
         <div class="mt-15 text-center mx-auto max-w-7xl mb-10">
-            <a href="/admin/dishes/create"><x-button class="!text-2xl font-bold !bg-blue-800 !hover:bg-blue-600" type="submit">Create Dish</x-button></a>
+            <a href="/admin/dishes/create"><x-button class="!text-2xl font-bold !bg-blue-800 !hover:bg-blue-600">Create Dish</x-button></a>
         </div>
     </div>
 </x-layout>

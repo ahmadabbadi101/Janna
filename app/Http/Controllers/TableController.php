@@ -26,12 +26,12 @@ class TableController extends Controller
             'employee_id' => ['required', 'integer', 'exists:employees,id'],
         ]);
         Table::create(request()->all());
-        return redirect('/admin/tables');
+        return redirect('/admin/tables')->with('success', 'Table created successfully.');
     }
     public function destroy(Table $table)
     {
         $table->delete();
-        return redirect('/admin/tables');
+        return redirect('/admin/tables')->with('success', 'Table deleted successfully.');
     }
     public function edit(Table $table)
     {
@@ -46,6 +46,6 @@ class TableController extends Controller
             'employee_id' => ['required', 'integer', 'exists:employees,id'],
         ]);
         $table->update(request()->all());
-        return redirect('/admin/tables');
+        return redirect('/admin/tables')->with('success', 'Table updated successfully.');
     }
 }
