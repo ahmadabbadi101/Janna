@@ -33,7 +33,7 @@ class SessionController extends Controller
                     'username' => 'Sorry these credentials do not match'
                 ]);
             }
-            Auth::login($employee);
+            Auth::guard('employees')->login($employee);
             request()->session()->regenerate();
 
             return $employee->id == 1 ? redirect('/admin') : redirect('/waiter');
@@ -49,13 +49,15 @@ class SessionController extends Controller
                     'username' => 'Sorry these credentials do not match'
                 ]);
             }
-            Auth::login($customer);
+            Auth::guard('tables')->login($customer);
             request()->session()->regenerate();
             return redirect('/menu');
         }
     }
     public function destroy()
     {
+        Auth::guard('employees')->logout();
+        Auth::guard('tables')->logout();
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();

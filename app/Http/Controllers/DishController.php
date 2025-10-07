@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 use App\Models\User;
+use App\Models\Table;
 use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
@@ -52,7 +53,9 @@ class DishController extends Controller
     }
     public function addToCart(Dish $dish)
     {
-        $dish->tables()->attach(request()->user()->id, ['quantity' => request()->quantity]);
+        /** @var Table $user */
+        $user = Auth::guard('tables')->user();
+        $dish->tables()->attach($user->id, ['quantity' => request()->quantity]);
         return redirect('/menu');
     }
     public function Cart()
@@ -61,16 +64,19 @@ class DishController extends Controller
     }
     public function removeFromCart(Dish $dish)
     {
-        $dish->tables()->detach(request()->user()->id);
+        /** @var Table $user */
+        $user = Auth::guard('tables')->user();
+        $dish->tables()->detach($user->id);
         return redirect('/cart');
     }
     public function confirmCart()
     {
-        $user=Auth::user();
-        $cartItems=$user->dishes()->wherePivot('confirmed', false)->get();
-        foreach($cartItems as $dish)
-        {
-            $dish->tables()->updateExistingPivot($user->id, ['confirmed'=>true]);
+        /** @var Table $user */
+        $user = Auth::guard('tables')->user();
+        $cartItems = $user->dishes()->wherePivot('confirmed', false)->get();
+        
+        foreach($cartItems as $dish) {
+            $dish->tables()->updateExistingPivot($user->id, ['confirmed' => true]);
         }
         return redirect('/menu');
     }

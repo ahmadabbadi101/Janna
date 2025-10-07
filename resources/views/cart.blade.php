@@ -2,9 +2,13 @@
     <x-back-button href="/menu" />
     <x-page-heading>Cart</x-page-heading>
     <div class="gap-8 mt-6 mx-auto max-w-7xl items-start">
-        @if (request()->user()->dishes() && request()->user()->dishes()->wherePivot('confirmed', false)->get()->count() > 0)
+        @php 
+        /** @var \App\Models\Table $user */
+        $user = Auth::guard('tables')->user(); 
+        @endphp
+        @if ($user->dishes && $user->dishes->where('pivot.confirmed', false)->count() > 0)
             <div>
-                @foreach (request()->user()->dishes()->wherePivot('confirmed', false)->get() as $dish)
+                @foreach ($user->dishes->where('pivot.confirmed', false) as $dish)
                     <x-cart-item :dish="$dish" />
                 @endforeach
 

@@ -18,18 +18,15 @@
             </div>
 
             <div>
-                @guest
+                @if (!Auth::guard('tables')->check() && !Auth::guard('employees')->check())
                 <a href="/login" class="text-green-100 hover:text-white px-4 font-bold">Login</a>
-                @endguest
-
-                @auth
+                @else
                 <form action="/logout" method="post">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="text-green-100 hover:text-white px-4 font-bold">Logout</button>
                 </form>
-                @endauth
-                
+                @endif
             </div>
         </nav>
 
