@@ -1,61 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Janna - Restaurant Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern Laravel-based restaurant management system featuring customer menu ordering, waiter interface, and admin dashboard.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Customer menu browsing and cart functionality
+- Waiter interface for order management
+- Admin dashboard for managing dishes, employees, and tables
+- Modern UI built with Tailwind CSS
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **PHP >= 8.2** with required extensions (BCMath, Ctype, cURL, DOM, Fileinfo, JSON, Mbstring, OpenSSL, PCRE, PDO, Tokenizer, XML)
+- **Composer** (PHP dependency manager)
+- **Node.js & npm** (for frontend assets)
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Step 1: Clone the Repository
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/yourusername/janna.git
+cd janna
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Step 2: Install Dependencies
 
-## Laravel Sponsors
+Install PHP dependencies:
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Install Node.js dependencies:
+```bash
+npm install
+```
 
-### Premium Partners
+### Step 3: Environment Configuration
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Create a `.env` file in the root directory:
 
-## Contributing
+```bash
+cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+If `.env.example` doesn't exist, create a `.env` file with these contents:
 
-## Code of Conduct
+```env
+APP_NAME=Janna
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+DB_CONNECTION=sqlite
+DB_DATABASE=
 
-## Security Vulnerabilities
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Generate the application key:
+```bash
+php artisan key:generate
+```
+
+### Step 4: Database Setup
+
+Create the SQLite database file:
+```bash
+touch database/database.sqlite
+```
+
+Run migrations and seed the database:
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+### Step 5: Build Frontend Assets
+
+For production:
+```bash
+npm run build
+```
+
+For development (with hot reload):
+```bash
+npm run dev
+```
+
+### Step 6: Start the Server
+
+```bash
+php artisan serve
+```
+
+Visit `http://localhost:8000` in your browser.
+
+## Default Login Credentials
+
+After running the seeders, use these credentials to log in:
+
+- **Username:** `admin`
+- **Password:** `password`
+
+## Application Routes
+
+- **Customer:** `/` (welcome), `/menu`, `/cart`
+- **Waiter:** `/waiter`
+- **Admin:** `/admin`, `/admin/dishes`, `/admin/employees`, `/admin/tables`
+
+## Development Commands
+
+Start development server with auto-reload:
+```bash
+composer run dev
+```
+
+Run tests:
+```bash
+composer run test
+```
+
+## Technical Details
+
+### 🏗️ Architecture & Design Patterns
+- **MVC Architecture**: Clean separation of concerns with dedicated controllers, models, and views
+- **RESTful API Design**: Well-structured routes following REST conventions
+- **Repository Pattern**: Organized business logic with service layers
+- **Middleware Implementation**: Custom middleware for authorization and route protection
+
+### 🔐 Security & Authentication
+- **Multi-Guard Authentication**: Three distinct authentication guards (users, employees, tables) with separate user providers
+- **Role-Based Access Control**: Admin, Waiter, and Customer roles with appropriate permissions
+- **Custom Middleware**: Route protection with `AdminOnly` middleware
+- **Security Best Practices**: Password hashing, input validation, CSRF protection, and SQL injection prevention
+
+### 💾 Database & Data Management
+- **Eloquent ORM**: Leveraged Laravel's powerful ORM for type-safe database interactions
+- **Many-to-Many Relationships**: Complex pivot table relationships with additional metadata (quantity, confirmed status)
+- **Model Factories & Seeders**: Automated test data generation for development and testing
+- **Query Optimization**: Efficient eager loading and relationship queries
+
+### 🎨 Frontend Development
+- **Modern UI with Tailwind CSS**: Responsive, utility-first styling approach
+- **Component-Based Views**: Reusable Blade components for consistent UI
+- **Client-Side Interactivity**: JavaScript integration with Vite for modern asset bundling
+- **Responsive Design**: Mobile-first approach ensuring cross-device compatibility
+
+### 📊 Business Logic Implementation
+- **Shopping Cart System**: Complete cart functionality with add, remove, and confirm operations
+- **Order Management**: Real-time order tracking for waiters
+- **CRUD Operations**: Full create, read, update, delete functionality for dishes, employees, and tables
+- **State Management**: Pivot table tracking order confirmation status
+
+### 🛠️ Development Practices
+- **Modern PHP 8.2+**: Leveraging latest PHP features and type hints
+- **Version Control**: Git-based workflow with structured project organization
+- **Asset Compilation**: Vite integration for modern frontend tooling
+- **Testing Infrastructure**: PHPUnit integration with organized test structure
+
+## Technical Stack
+
+- **Backend:** Laravel 12 (PHP 8.2+)
+- **Frontend:** Blade Templates, Tailwind CSS, JavaScript
+- **Database:** SQLite (easily configurable for MySQL/PostgreSQL)
+- **Build Tool:** Vite
+- **Package Manager:** Composer, npm
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT License
