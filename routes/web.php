@@ -8,8 +8,10 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WaiterController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\WelcomeController;
 
-Route::view('/', 'customer.welcome');
+
+Route::get('/', WelcomeController::class);
 
 Route::get('/login', [SessionController::class, "create"]);
 Route::post('/login', [SessionController::class, "store"]);
