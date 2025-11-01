@@ -1,1 +1,0 @@
-dd('ters ra2smaleya');

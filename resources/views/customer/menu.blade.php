@@ -1,9 +1,11 @@
 <x-layout>
+    @if(isset($notification) && $notification)
+        <x-notification :notification="$notification" />
+    @endif
     <div>
         <x-page-heading>
             Menu
         </x-page-heading>
-
 
         <div class="grid lg:grid-cols-4 gap-8 mt-6 mx-auto max-w-7xl items-start">
             <x-menu-section>

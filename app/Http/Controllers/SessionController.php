@@ -13,7 +13,7 @@ class SessionController extends Controller
 {
     public function create()
     {
-        return view('login');
+        return view('auth.login');
     }
     public function store()
     {
@@ -25,7 +25,7 @@ class SessionController extends Controller
 
         if($attributes['user_type'] === 'Staff')
         {
-            $employee = Employee::where('username', strtolower($attributes['username']))->first();
+            $employee = Employee::whereRaw('LOWER(username) = ?', [strtolower($attributes['username'])])->first();
 
             if(!$employee || !Hash::check($attributes['password'], $employee->password))
             {
@@ -41,7 +41,7 @@ class SessionController extends Controller
         
         else
         {
-            $customer = Table::where('username', $attributes['username'])->first();
+            $customer = Table::whereRaw('LOWER(username) = ?', [strtolower($attributes['username'])])->first();
 
             if(!$customer || !Hash::check($attributes['password'], $customer->password))
             {

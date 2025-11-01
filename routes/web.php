@@ -5,23 +5,32 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WaiterController;
+use App\Http\Controllers\MenuController;
 
-Route::view('/', 'welcome');
-Route::view('/admin', 'admin');
-
-Route::middleware('auth:tables')->group(function () {
-    Route::get('/menu', [DishController::class, 'menu']);
-    Route::post('/menu/{dish}', [DishController::class, 'addToCart']);
-    Route::get('/cart', [DishController::class, 'Cart']);
-    Route::delete('/cart/{dish}', [DishController::class, 'removeFromCart']);
-    Route::post('/cart', [DishController::class, 'confirmCart']);
-});
+Route::view('/', 'customer.welcome');
 
 Route::get('/login', [SessionController::class, "create"]);
 Route::post('/login', [SessionController::class, "store"]);
 Route::delete('/logout', [SessionController::class, "destroy"]);
 
+Route::middleware('auth:tables')->group(function () {
+    Route::get('/menu', MenuController::class);
+
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart', [CartController::class, 'store']);
+    Route::delete('/cart/{dish}', [CartController::class, 'destroy']);
+    Route::post('/cart/confirm', [CartController::class, 'confirm']);
+});
+
+Route::middleware('auth:employees')->group(function () {
+    Route::get('/waiter', [WaiterController::class, 'index']);
+    Route::delete('/waiter/{dish}', [WaiterController::class, 'destroy']);
+});
+
 Route::middleware('admin')->group(function () {
+    Route::view('/admin', 'admin.dashboard');
     Route::get('/admin/dishes', [DishController::class, "index"]);
     Route::get('/admin/dishes/create', [DishController::class, "create"]);
     Route::post('/admin/dishes', [DishController::class, "store"]);

@@ -19,8 +19,9 @@
                     </x-button>
                 </form>
                 @else
-                <form action="/menu/{{$dish->id}}" method="post">
+                <form action="/cart" method="post">
                 @csrf
+                <input type="hidden" name="dish_id" value="{{$dish->id}}">
                 <input type="number" name="quantity" min="1" value="1"
                     class="w-16 bg-white/10 text-white text-sm p-1 rounded-md border border-white/20 focus:border-white/40 focus:outline-none">
                 <x-button type="submit">

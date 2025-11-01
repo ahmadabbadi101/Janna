@@ -13,7 +13,7 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::latest()->get()->groupBy('category');
-        return view('dishes.index', [
+        return view('admin.dishes.index', [
             'appetizers' => $dishes['Appetizer'] ?? collect(), 
             'platters' => $dishes['Platter'] ?? collect(), 
             'sandwiches' => $dishes['Sandwich'] ?? collect(), 
@@ -22,7 +22,7 @@ class DishController extends Controller
     }
     public function create()
     {
-        return view('dishes.create');
+        return view('admin.dishes.create');
     }
     public function store() 
     {
@@ -39,45 +39,5 @@ class DishController extends Controller
     {
         $dish->delete();
         return redirect('/admin/dishes')->with('success', 'Dish deleted successfully.');
-    }
-
-    public function menu()
-    {
-        $dishes = Dish::latest()->get()->groupBy('category');
-        return view('menu', [
-            'appetizers' => $dishes['Appetizer'] ?? collect(), 
-            'platters' => $dishes['Platter'] ?? collect(), 
-            'sandwiches' => $dishes['Sandwich'] ?? collect(), 
-            'drinks' => $dishes['Drink'] ?? collect()   
-        ]);
-    }
-    public function addToCart(Dish $dish)
-    {
-        /** @var Table $user */
-        $user = Auth::guard('tables')->user();
-        $dish->tables()->attach($user->id, ['quantity' => request()->quantity]);
-        return redirect('/menu');
-    }
-    public function Cart()
-    {
-        return view('cart');
-    }
-    public function removeFromCart(Dish $dish)
-    {
-        /** @var Table $user */
-        $user = Auth::guard('tables')->user();
-        $dish->tables()->detach($user->id);
-        return redirect('/cart');
-    }
-    public function confirmCart()
-    {
-        /** @var Table $user */
-        $user = Auth::guard('tables')->user();
-        $cartItems = $user->dishes()->wherePivot('confirmed', false)->get();
-        
-        foreach($cartItems as $dish) {
-            $dish->tables()->updateExistingPivot($user->id, ['confirmed' => true]);
-        }
-        return redirect('/menu');
     }
 }

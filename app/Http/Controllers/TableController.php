@@ -11,12 +11,12 @@ class TableController extends Controller
     public function index()
     {
         $tables = Table::all();
-        return view('tables.index', compact('tables'));
+        return view('admin.tables.index', compact('tables'));
     }
     public function create()
     {
         $employees = Employee::all();
-        return view('tables.create', compact('employees'));
+        return view('admin.tables.create', compact('employees'));
     }
     public function store()
     {
@@ -36,7 +36,7 @@ class TableController extends Controller
     public function edit(Table $table)
     {
         $employees = Employee::all();
-        return view('tables.edit', compact('table', 'employees'));
+        return view('admin.tables.edit', compact('table', 'employees'));
     }
     public function update(Table $table)
     {
