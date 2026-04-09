@@ -9,6 +9,9 @@ A modern Laravel-based restaurant management system featuring customer menu orde
 - Admin dashboard for managing dishes, employees, and tables
 - Modern UI built with Tailwind CSS
 
+## Video Demonstration
+[Click Here](https://youtu.be/1eu2aot5i0k)
+
 ## Requirements
 
 - **PHP >= 8.2** with required extensions (BCMath, Ctype, cURL, DOM, Fileinfo, JSON, Mbstring, OpenSSL, PCRE, PDO, Tokenizer, XML)
